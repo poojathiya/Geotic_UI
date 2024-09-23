@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- Google fonts Font family : Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,390 @@
         rel="stylesheet">
     <title>Warehouse Detail</title>
 </head>
+<style>
+    *,
+    .container {
+        box-sizing: border-box
+    }
+
+    .icon img,
+    .icon svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .photo,
+    .photo .title,
+    .sub-heading {
+        text-decoration: underline
+    }
+
+    .count .title,
+    .value-header {
+        text-transform: uppercase;
+        letter-spacing: 1.2px
+    }
+
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    html {
+        font-size: 62.5%;
+        background-color: #f7f8f8
+    }
+
+    body {
+        font-family: Inter, sans-serif;
+        line-height: 1;
+        font-weight: 400
+    }
+
+    .container {
+        margin: 0 auto 4rem;
+        height: 1123px;
+        width: 700px;
+        padding: 20px;
+        background-color: #fff
+    }
+
+    .warehouse-Id-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .8rem;
+        margin-top: 2rem
+    }
+
+    .warehouse-Id-div .title,
+    .warehouse-Id-div .value {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #212529
+    }
+
+    .grid-col-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin: 3rem 0
+    }
+
+    .card {
+        background-color: #002b56;
+        padding: 1.2rem;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .1)
+    }
+
+    .icon,
+    .key-hubs th {
+        background-color: #335578
+    }
+
+    .material,
+    .power {
+        height: fit-content
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: .8rem
+    }
+
+    .icon {
+        width: 4.4rem;
+        height: 4.4rem;
+        border-radius: 10rem;
+        margin-right: .6rem;
+        position: relative
+    }
+
+    .icon img {
+        filter: invert(1);
+        width: 24px;
+        height: 24px
+    }
+
+    .key-hubs,
+    .logo img {
+        width: 100%
+    }
+
+    .card-header .text {
+        font-size: 2rem;
+        font-weight: 500;
+        color: #fff
+    }
+
+    .basic .card-value {
+        display: grid;
+        gap: .8rem;
+        padding: .6rem;
+        align-items: first baseline;
+        grid-template-columns: 2fr 3fr
+    }
+
+    .dimension .card-value,
+    .location .card-value {
+        align-items: first baseline;
+        gap: .8rem;
+        padding: .6rem
+    }
+
+    .dimension .card-value {
+        display: grid;
+        grid-template-columns: 3fr 2fr
+    }
+
+    .location {
+        grid-column: 1/3
+    }
+
+    .location .card-value {
+        display: flex
+    }
+
+    .lease .card-value {
+        display: grid;
+        gap: .8rem;
+        padding: .6rem;
+        align-items: first baseline;
+        grid-template-columns: 1fr 1fr
+    }
+
+    .card-value .title {
+        color: #f8f9fa;
+        font-size: 12px;
+        font-weight: 400
+    }
+
+    .card-value .value {
+        display: flex;
+        color: #ec7f1f;
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 1.9rem;
+        padding-top: .3rem;
+        align-items: center;
+        gap: .2rem
+    }
+
+    .key-hubs {
+        border-radius: 3px;
+        margin-top: 1rem
+    }
+
+    .key-hubs td,
+    .key-hubs th {
+        text-align: left;
+        padding: 12px 16px;
+        font-size: 12px;
+        margin: 0
+    }
+
+    .key-hubs th {
+        font-weight: 700;
+        border-radius: 5px 5px 1px 1px;
+        border-left: none;
+        color: #ececec
+    }
+
+    .img-box img,
+    .vertical-icon img {
+        background-size: cover;
+        border-radius: 10px
+    }
+
+    .key-hubs tr:nth-child(2n) {
+        background-color: #e9ecef;
+        color: #212529
+    }
+
+    .key-hubs tr:nth-child(odd) {
+        background-color: #dee2e6;
+        color: #212529
+    }
+
+    .safety .card-value {
+        display: flex;
+        gap: 1.2rem;
+        padding: .6rem;
+        align-items: center
+    }
+
+    .img-box,
+    .photo {
+        flex-direction: column
+    }
+
+    .safety .value {
+        color: #e9ecef;
+        font-weight: 400;
+        margin-bottom: .4rem
+    }
+
+    .business .value,
+    h2 {
+        color: #ec7f1f
+    }
+
+    .value-header {
+        font-size: 1.2rem;
+        color: #ced4da;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-weight: 300
+    }
+
+    .business .card-value .title,
+    .sub-heading,
+    .tag-line {
+        font-size: 1.4rem
+    }
+
+    .add-gap {
+        display: grid;
+        gap: 2.4rem;
+        grid-template-columns: 1fr
+    }
+
+    .photo {
+        display: flex;
+        gap: 2rem
+    }
+
+    .sub-heading {
+        color: #212529;
+        font-weight: 500
+    }
+
+    .grid-col-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3.2rem;
+        margin-top: 6rem
+    }
+
+    .img-box {
+        display: flex;
+        gap: 2rem
+    }
+
+    .img-box img {
+        width: 100%;
+        height: 15rem;
+        background-color: #ec7f1f;
+        box-shadow: rgba(236, 127, 31, .616) 1.95px 1.95px 2.6px
+    }
+
+    figcaption {
+        color: #212529;
+        text-align: center;
+        font-size: 1.2rem
+    }
+
+    h1,
+    h2 {
+        font-size: 2rem
+    }
+
+    .grid-col-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.2rem
+    }
+
+    .counting,
+    .number,
+    .service,
+    .title-page {
+        display: flex
+    }
+
+    .title-page {
+        color: #212529;
+        flex-direction: column;
+        align-items: center
+    }
+
+    .logo {
+        width: 30rem
+    }
+
+    .service {
+        justify-content: center
+    }
+
+    .service img {
+        width: 80%
+    }
+
+    .vertical-icon img {
+        height: 10rem;
+        padding: 1.2rem;
+        background-color: #fffdfd;
+        box-shadow: rgba(50, 50, 93, .25) 0 13px 27px -5px, rgba(0, 0, 0, .3) 0 8px 16px -8px
+    }
+
+    h2 {
+        margin: 2rem 0
+    }
+
+    .tag-line {
+        font-weight: 600;
+        margin-bottom: 2rem
+    }
+
+    .address {
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 2.5rem
+    }
+
+    h1 {
+        margin-bottom: 3rem
+    }
+
+    .count {
+        width: fit-content;
+        border: 3px solid #ec7f1f;
+        border-radius: 1rem;
+        padding: 1.2rem
+    }
+
+    .counting {
+        gap: 5rem
+    }
+
+    .number {
+        font-size: 5rem;
+        font-weight: 700;
+        background: linear-gradient(to top, #002b56, #002b5679);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        align-items: first baseline;
+        gap: .4rem
+    }
+
+    .number-text {
+        font-size: 1.2rem;
+        font-weight: 600
+    }
+
+    .small {
+        font-size: 2.5rem
+    }
+
+    .one {
+        background-color: red
+    }
+</style>
 
 <body>
     <div class="container title-page">
@@ -66,28 +450,28 @@
         <h2>Key Verticals</h2>
         <div class="grid-col-4">
             <div class="vertical-icon">
-                <img src="img/Verticals/freight-forward-broker.png" alt="">
+                <img src="img/Verticals/freight-forward-broker-blue.png" alt="">
             </div>
             <div class="vertical-icon">
-                <img src="img/Verticals/ecommerce-internet-things.png" alt="">
+                <img src="img/Verticals/ecommerce-internet-things-blue.png" alt="">
             </div>
             <div class="vertical-icon">
-                <img src="img/Verticals/automotive-car.png" alt="">
+                <img src="img/Verticals/automotive-blue.png" alt="">
             </div>
             <div class="vertical-icon">
-                <img src="img/Verticals/consumer-durables.png" alt="">
+                <img src="img/Verticals/consumer-durables-blue.png" alt="">
             </div>
             <div class="vertical-icon">
-                <img src="img/Verticals/pharma-injection.png" alt="">
+                <img src="img/Verticals/pharma-injection-blue.png" alt="">
             </div>
             <div class="vertical-icon">
-                <img src="img/Verticals/fmcg-grocery.png" alt="">
+                <img src="img/Verticals/fmcg-grocery-blue.png" alt="">
             </div>
             <div class="vertical-icon">
-                <img src="img/Verticals/heavyengineering-excavator.png" alt="">
+                <img src="img/Verticals/heavyengineering-excavator-blue.png" alt="">
             </div>
             <div class="vertical-icon">
-                <img src="img/Verticals/textile-sewing.png" alt="">
+                <img src="img/Verticals/textile-sewing-blue.png" alt="">
             </div>
         </div>
 
@@ -267,85 +651,90 @@
 
                     </div>
                 </div>
-               
+
 
             </div>
             <div class="add-gap">
-            <div class="card safety security">
-                <div class="card-header">
-                    <div class="icon">
-                        <img src="img/security-gate_7466837.png" alt="">
+                <div class="card safety security">
+                    <div class="card-header">
+                        <div class="icon">
+                            <img src="img/security-gate_7466837.png" alt="">
+                        </div>
+                        <div class="text">Security</div>
+
                     </div>
-                    <div class="text">Security</div>
-            
+                    <div class="card-body">
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>CCTV Camera</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Video Backup</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Security Room</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Security Personnel</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Access Gates & Boundary Wall</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>CCTV Camera</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Video Backup</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Security Room</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Security Personnel</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-            
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Access Gates & Boundary Wall</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
 
             </div>
-            
+
 
         </div>
 
@@ -360,88 +749,94 @@
                             <img src="img/Safety-protection_13207038.png" alt="">
                         </div>
                         <div class="text">Safety</div>
-                
+
                     </div>
                     <div class="card-body">
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Fire Hydrants</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Sprinklers</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Fire Resistant Walls</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Fire Resistant Shutters</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Smoke Detector</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="business">
-                
+
                             <div class="value-header">
-                
+
                                 Business Continuity
                             </div>
                             <div class="card-value">
                                 <div class="title">Gate Height above Road Level(in ft.)</div>
                                 <div class="value ">15</div>
                             </div>
-                
+
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Water Drainage</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
@@ -455,58 +850,62 @@
                             <img src="img/power-charge_7079356.png" alt="">
                         </div>
                         <div class="text">Power</div>
-                
+
                     </div>
                     <div class="card-body">
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Power Backup</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Automatic Emergency Lighting</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Elevated Platform for Generator</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Solar Panel</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
-                
+
                     </div>
                 </div>
                 <div class="card safety material">
@@ -515,77 +914,83 @@
                             <img src="img/material handling-carry_12296603.png" alt="">
                         </div>
                         <div class="text">Material Handling</div>
-                
+
                     </div>
                     <div class="card-body">
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Forklift</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>HOPT</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>BOPT</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Dock Leveler</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>EOT</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
                             </svg>
                         </div>
-                
+
                         <div class="card-value">
-                
+
                             <div class="value">
-                
+
                                 <span>Zero Lift</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
                                 <path
                                     d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                                 </path>
@@ -595,224 +1000,240 @@
                 </div>
             </div>
             <div class="add-gap">
-            <div class="card safety Amenities">
-                <div class="card-header">
-                    <div class="icon">
-                        <img src="img/Amenities-satellite_10771026.png" alt="">
+                <div class="card safety Amenities">
+                    <div class="card-header">
+                        <div class="icon">
+                            <img src="img/Amenities-satellite_10771026.png" alt="">
+                        </div>
+                        <div class="text">Amenities</div>
+
                     </div>
-                    <div class="text">Amenities</div>
-            
+                    <div class="card-body">
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Parking</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Office Space</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Toilet</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Water Supply</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Canteen</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Resting Room</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Sewage Treatment Plant</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Broardband</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Landline</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Intercom</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Parking</span>
+                <div class="card safety vehicles">
+                    <div class="card-header">
+                        <div class="icon">
+                            <img src="img/vehicles supported-trucks_8552006.png" alt="">
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
+                        <div class="text">Vehicles Supported</div>
+
                     </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Office Space</span>
+                    <div class="card-body">
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Light CV (3.5-4 m)</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Toilet</span>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Medium CV (5-7 m)</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
+                                </path>
+                            </svg>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Water Supply</span>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Heavy CV (8-10 m)</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Canteen</span>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Extra Heavy CV (10-15m)</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-            
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Resting Room</span>
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Multi-Axle (10-15 m)</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Sewage Treatment Plant</span>
+
+                        <div class="card-value">
+
+                            <div class="value">
+
+                                <span>Container Trucks (12-14m)</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                                </path>
+                            </svg>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Broardband</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Landline</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Intercom</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                            </path>
-                        </svg>
                     </div>
                 </div>
             </div>
-            <div class="card safety vehicles">
-                <div class="card-header">
-                    <div class="icon">
-                        <img src="img/vehicles supported-trucks_8552006.png" alt="">
-                    </div>
-                    <div class="text">Vehicles Supported</div>
-            
-                </div>
-                <div class="card-body">
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Light CV (3.5-4 m)</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Medium CV (5-7 m)</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Heavy CV (8-10 m)</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Extra Heavy CV (10-15m)</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Multi-Axle (10-15 m)</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-            
-                    <div class="card-value">
-            
-                        <div class="value">
-            
-                            <span>Container Trucks (12-14m)</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
-                            <path
-                                d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            </div>
-           
+
         </div>
     </div>
     <div class="container">
@@ -823,71 +1244,76 @@
                         <img src="img/insurance_1467555.png" alt="">
                     </div>
                     <div class="text">Insurance</div>
-            
+
                 </div>
                 <div class="card-body">
                     <div class="card-value">
-            
+
                         <div class="value">
-            
+
                             <span>Warehouse Insurance</span>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                            viewBox="0 0 256 256">
                             <path
                                 d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                             </path>
                         </svg>
                     </div>
                     <div class="card-value">
-            
+
                         <div class="value">
-            
+
                             <span>Storage</span>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                            viewBox="0 0 256 256">
                             <path
                                 d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z">
                             </path>
                         </svg>
                     </div>
                     <div class="card-value">
-            
+
                         <div class="value">
-            
+
                             <span>Theft</span>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                            viewBox="0 0 256 256">
                             <path
                                 d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                             </path>
                         </svg>
                     </div>
                     <div class="card-value">
-            
+
                         <div class="value">
-            
+
                             <span>Transit</span>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                            viewBox="0 0 256 256">
                             <path
                                 d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                             </path>
                         </svg>
                     </div>
                     <div class="card-value">
-            
+
                         <div class="value">
-            
+
                             <span>Marine</span>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                            viewBox="0 0 256 256">
                             <path
                                 d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                             </path>
                         </svg>
                     </div>
-            
-            
+
+
                 </div>
             </div>
             <div class="card safety legal">
@@ -896,58 +1322,61 @@
                         <img src="img/legal-document_13338122.png" alt="">
                     </div>
                     <div class="text">Legal Details & Certifications</div>
-            
+
                 </div>
                 <div class="card-body">
                     <div class="card-value">
-            
+
                         <div class="value">
-            
+
                             <span>Mother Deed</span>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                            viewBox="0 0 256 256">
                             <path
                                 d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                             </path>
                         </svg>
                     </div>
-            
+
                     <div class="business legal-val">
-            
-            
+
+
                         <div class="card-value">
                             <div class="title">Land Use Conversion</div>
                             <div class="value ">Industrial/Warehouse/Commercial</div>
                         </div>
-            
+
                     </div>
                     <div class="card-value">
-            
+
                         <div class="value">
-            
+
                             <span>Building Plan Approval</span>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                            viewBox="0 0 256 256">
                             <path
                                 d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                             </path>
                         </svg>
                     </div>
                     <div class="card-value">
-            
+
                         <div class="value">
-            
+
                             <span>Fire Safety Certificate</span>
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f" viewBox="0 0 256 256">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#EC7f1f"
+                            viewBox="0 0 256 256">
                             <path
                                 d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
                             </path>
                         </svg>
                     </div>
-            
-            
-            
+
+
+
                 </div>
             </div>
         </div>
